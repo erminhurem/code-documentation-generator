@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Your Files</h2>
+<ul class="list-group">
+    {% for file in files %}
+    <li class="list-group-item">
+        {{ file.file.name }}
+        <a href="{% url 'generate_docs' file.id %}" class="btn btn-sm btn-secondary float-right ml-2">Generate Docs</a>
+        <form method="post" action="{% url 'delete_file' file.id %}" class="float-right">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

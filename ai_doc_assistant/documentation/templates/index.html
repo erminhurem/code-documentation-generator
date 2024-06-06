@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-4">Welcome to AI Documentation Assistant</h1>
+    <p class="lead">This is a simple application to generate documentation for your code files using OpenAI's API.</p>
+    <hr class="my-4">
+    
+    {% if not user.is_authenticated %}
+        <p>Register or log in to get started.</p>
+        <a class="btn btn-primary btn-lg" href="{% url 'register' %}" role="button">Register</a>
+        <a class="btn btn-secondary btn-lg" href="{% url 'login' %}" role="button">Login</a>
+    {% endif %}
+    {% if user.is_authenticated %}
+        <a class="btn btn-primary btn-lg" href="{% url 'upload_file' %}">Upload</a></li>
+        <a class="btn btn-secondary btn-lg" href="{% url 'file_list' %}">My Files</a></li>
+    {% endif %}
+</div>
+{% endblock %}
